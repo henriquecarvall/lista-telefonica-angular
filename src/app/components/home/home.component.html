@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>📞 Minha Lista Telefônica</h2>
+  <h2>🏠 Home - Lista Telefônica</h2>
 
   <div class="form-group">
     <label for="nome">👤 Nome:</label>
@@ -29,26 +29,21 @@
     {{ labelNovoContato }}
   </button>
 
-  <div class="mt-4" *ngIf="contatoService.findAll().length > 0">
-    <h3>📋 Meus Contatos ({{ contatoService.findAll().length }})</h3>
-
-    <div *ngFor="let contato of contatoService.findAll()" class="contact-item">
-      <div class="contact-info">
-        <strong>{{ contato.nome }}</strong>
-        <span>{{ contato.telefone }}</span>
-      </div>
-
-      <button
-        (click)="removerContato(contato.id!)"
-        class="btn btn-danger btn-sm"
-        title="Remover contato">
-        🗑️
-      </button>
-    </div>
+  <div class="action-buttons">
+    <button
+      (click)="irParaLista()"
+      class="btn btn-secondary">
+      📋 Ver Lista Completa
+    </button>
   </div>
 
-  <div *ngIf="contatoService.findAll().length === 0" class="empty-state">
+  <div class="empty-state" *ngIf="contatoService.findAll().length === 0">
     <p>📭 Nenhum contato cadastrado ainda.</p>
     <p>Adicione seu primeiro contato acima! 👆</p>
+  </div>
+
+  <div class="empty-state" *ngIf="contatoService.findAll().length > 0">
+    <p>✅ Você tem {{ contatoService.findAll().length }} contato(s) cadastrado(s)</p>
+    <p>Clique em "Ver Lista Completa" para ver todos! 👆</p>
   </div>
 </div>

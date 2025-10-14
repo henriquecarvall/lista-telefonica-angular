@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { NgIf, NgFor } from "@angular/common";
 import { ContatoService } from "../../services/contato.service";
+import { Router } from '@angular/router';
 
 @Component({
 selector: 'app-home',
@@ -19,7 +20,10 @@ labelNovoContato: string = "Adicionar Contato";
 nome: string = "";
 telefone: string = "";
 
-constructor(public contatoService: ContatoService) { }
+constructor(
+    public contatoService: ContatoService,
+    private router: Router
+  ) { }
 
   novoContato(): void {
     console.log("Nome: " + this.nome);
@@ -45,5 +49,10 @@ constructor(public contatoService: ContatoService) { }
     this.contatoService.listaContatos = this.contatoService.listaContatos.filter(
       contato => contato.id !== id
     );
+    localStorage.setItem('contatos', JSON.stringify(this.contatoService.listaContatos));
+  }
+
+  irParaLista(): void {
+    this.router.navigate(['/lista']);
   }
 }

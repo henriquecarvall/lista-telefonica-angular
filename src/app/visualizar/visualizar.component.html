@@ -1,0 +1,36 @@
+<div style="padding: 20px;">
+  <h2>👁️ Visualizar Contato</h2>
+
+  <button (click)="voltarParaLista()" style="padding: 10px; background: #6c757d; color: white; border: none; border-radius: 4px; margin-bottom: 20px;">
+    ← Voltar para Lista
+  </button>
+
+  <div *ngIf="!contato" style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 8px;">
+    <p>❌ Contato não encontrado!</p>
+  </div>
+
+  <div *ngIf="contato" style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
+    <h3>Detalhes do Contato</h3>
+
+    <div style="margin-bottom: 15px;">
+      <strong>ID:</strong> {{ contato.id }}
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <strong>Nome:</strong> {{ contato.nome }}
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <strong>Telefone:</strong> {{ contato.telefone }}
+    </div>
+
+    <!-- EXIBE QUERYPARAMS SE EXISTIR -->
+    <div *ngIf="referencia" style="background: #e3f2fd; padding: 10px; border-radius: 4px; margin-top: 15px;">
+      <strong>Referência (QueryParam):</strong> {{ referencia }}
+    </div>
+
+    <div *ngIf="!referencia" style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-top: 15px;">
+      <strong>Info:</strong> Navegação sem QueryParams
+    </div>
+  </div>
+</div>
